@@ -5,9 +5,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // enable CORS for all origins
+app.use(cors());
 
-// Apps metadata
+// App metadata — filenames reflect root folder files now
 const APPS = [
   {
     name: "Reminder Timer",
@@ -40,8 +40,8 @@ app.get('/apps', (req, res) => {
   res.json(APPS);
 });
 
-// Serve app files from hosted_apps folder
-app.use('/download', express.static(path.join(__dirname, 'hosted_apps')));
+// Serve app files from root directory (same folder as server.js)
+app.use('/download', express.static(path.join(__dirname)));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
